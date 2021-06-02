@@ -36,6 +36,7 @@ namespace Ocelot.Configuration.Builder
         private List<HeaderFindAndReplace> _upstreamHeaderFindAndReplace;
         private List<HeaderFindAndReplace> _downstreamHeaderFindAndReplace;
         private readonly List<DownstreamHostAndPort> _downstreamAddresses;
+        private readonly List<DownstreamFilter> _downstreamFilters;
         private string _key;
         private List<string> _delegatingHandlers;
         private List<AddHeader> _addHeadersToDownstream;
@@ -51,11 +52,18 @@ namespace Ocelot.Configuration.Builder
             _delegatingHandlers = new List<string>();
             _addHeadersToDownstream = new List<AddHeader>();
             _addHeadersToUpstream = new List<AddHeader>();
+            _downstreamFilters = new List<DownstreamFilter>();
         }
 
         public DownstreamReRouteBuilder WithDownstreamAddresses(List<DownstreamHostAndPort> downstreamAddresses)
         {
             _downstreamAddresses.AddRange(downstreamAddresses);
+            return this;
+        }
+
+        public DownstreamReRouteBuilder WithDownstreamFilters(List<DownstreamFilter> downstreamFilters)
+        {
+            _downstreamFilters.AddRange(downstreamFilters);
             return this;
         }
 
@@ -271,6 +279,7 @@ namespace Ocelot.Configuration.Builder
                 _upstreamHeaderFindAndReplace,
                 _downstreamHeaderFindAndReplace,
                 _downstreamAddresses,
+                _downstreamFilters,
                 _serviceName,
                 _serviceNamespace,
                 _httpHandlerOptions,

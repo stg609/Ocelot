@@ -6,7 +6,7 @@ namespace Ocelot.Configuration.Creator
     {
         public AuthenticationOptions Create(FileReRoute reRoute)
         {
-            return new AuthenticationOptions(reRoute.AuthenticationOptions.AllowedScopes, reRoute.AuthenticationOptions.AuthenticationProviderKey);
+            return new AuthenticationOptions(reRoute.AuthenticationOptions.AllowedScopes, reRoute.AuthenticationOptions.Policy, reRoute.AuthenticationOptions.AuthenticationProviderKey);
         }
     }
 }

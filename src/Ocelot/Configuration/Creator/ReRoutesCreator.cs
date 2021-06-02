@@ -20,6 +20,7 @@ namespace Ocelot.Configuration.Creator
         private readonly IHttpHandlerOptionsCreator _httpHandlerOptionsCreator;
         private readonly IHeaderFindAndReplaceCreator _headerFAndRCreator;
         private readonly IDownstreamAddressesCreator _downstreamAddressesCreator;
+        private readonly IDownstreamFiltersCreator _downstreamFiltersCreator;
         private readonly IReRouteKeyCreator _reRouteKeyCreator;
         private readonly ISecurityOptionsCreator _securityOptionsCreator;
         private readonly IVersionCreator _versionCreator;
@@ -36,6 +37,7 @@ namespace Ocelot.Configuration.Creator
             IHttpHandlerOptionsCreator httpHandlerOptionsCreator,
             IHeaderFindAndReplaceCreator headerFAndRCreator,
             IDownstreamAddressesCreator downstreamAddressesCreator,
+            IDownstreamFiltersCreator downstreamFiltersCreator,
             ILoadBalancerOptionsCreator loadBalancerOptionsCreator,
             IReRouteKeyCreator reRouteKeyCreator,
             ISecurityOptionsCreator securityOptionsCreator,
@@ -45,6 +47,7 @@ namespace Ocelot.Configuration.Creator
             _reRouteKeyCreator = reRouteKeyCreator;
             _loadBalancerOptionsCreator = loadBalancerOptionsCreator;
             _downstreamAddressesCreator = downstreamAddressesCreator;
+            _downstreamFiltersCreator = downstreamFiltersCreator;
             _headerFAndRCreator = headerFAndRCreator;
             _regionCreator = regionCreator;
             _rateLimitOptionsCreator = rateLimitOptionsCreator;
@@ -103,6 +106,8 @@ namespace Ocelot.Configuration.Creator
 
             var downstreamAddresses = _downstreamAddressesCreator.Create(fileReRoute);
 
+            var downstreamFilters = _downstreamFiltersCreator.Create(fileReRoute);
+
             var lbOptions = _loadBalancerOptionsCreator.Create(fileReRoute.LoadBalancerOptions);
 
             var securityOptions = _securityOptionsCreator.Create(fileReRoute.SecurityOptions);
@@ -128,6 +133,7 @@ namespace Ocelot.Configuration.Creator
                 .WithDownstreamScheme(fileReRoute.DownstreamScheme)
                 .WithLoadBalancerOptions(lbOptions)
                 .WithDownstreamAddresses(downstreamAddresses)
+                .WithDownstreamFilters(downstreamFilters)
                 .WithLoadBalancerKey(reRouteKey)
                 .WithQosOptions(qosOptions)
                 .WithEnableRateLimiting(fileReRouteOptions.EnableRateLimiting)

@@ -64,6 +64,15 @@
         /// </value>
         public Func<HttpContext, Func<Task>, Task> PreQueryStringBuilderMiddleware { get; set; }
 
+
+        /// <summary>
+        /// This is to allow the user to run any extra middleware before request
+        /// </summary>
+        /// <value>
+        /// <placeholder>This is to allow the user to run any extra middleware before request</placeholder>
+        /// </value>
+        public Func<HttpContext, Func<Task>, Task> PreRequestMiddleware { get; set; }
+
         /// <summary>
         /// This is an extension that will branch to different pipes
         /// </summary>

@@ -117,6 +117,7 @@ namespace Ocelot.DependencyInjection
             Services.TryAddSingleton<IRequestMapper, RequestMapper>();
             Services.TryAddSingleton<IHttpHandlerOptionsCreator, HttpHandlerOptionsCreator>();
             Services.TryAddSingleton<IDownstreamAddressesCreator, DownstreamAddressesCreator>();
+            Services.TryAddSingleton<IDownstreamFiltersCreator, DownstreamFiltersCreator>();
             Services.TryAddSingleton<IDelegatingHandlerHandlerFactory, DelegatingHandlerHandlerFactory>();
             Services.TryAddSingleton<ICacheKeyGenerator, CacheKeyGenerator>();
             Services.TryAddSingleton<IOcelotConfigurationChangeTokenSource, OcelotConfigurationChangeTokenSource>();

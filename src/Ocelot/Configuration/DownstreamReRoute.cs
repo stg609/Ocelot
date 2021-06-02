@@ -13,6 +13,7 @@ namespace Ocelot.Configuration
             List<HeaderFindAndReplace> upstreamHeadersFindAndReplace,
             List<HeaderFindAndReplace> downstreamHeadersFindAndReplace,
             List<DownstreamHostAndPort> downstreamAddresses,
+            List<DownstreamFilter> downstreamFilters,
             string serviceName,
             string serviceNamespace,
             HttpHandlerOptions httpHandlerOptions,
@@ -51,6 +52,7 @@ namespace Ocelot.Configuration
             UpstreamHeadersFindAndReplace = upstreamHeadersFindAndReplace ?? new List<HeaderFindAndReplace>();
             DownstreamHeadersFindAndReplace = downstreamHeadersFindAndReplace ?? new List<HeaderFindAndReplace>();
             DownstreamAddresses = downstreamAddresses ?? new List<DownstreamHostAndPort>();
+            DownstreamFilters = downstreamFilters ?? new List<DownstreamFilter>();
             ServiceName = serviceName;
             ServiceNamespace = serviceNamespace;
             HttpHandlerOptions = httpHandlerOptions;
@@ -84,6 +86,7 @@ namespace Ocelot.Configuration
         public List<HeaderFindAndReplace> UpstreamHeadersFindAndReplace { get; }
         public List<HeaderFindAndReplace> DownstreamHeadersFindAndReplace { get; }
         public List<DownstreamHostAndPort> DownstreamAddresses { get; }
+        public List<DownstreamFilter> DownstreamFilters { get; }
         public string ServiceName { get; }
         public string ServiceNamespace { get; }
         public HttpHandlerOptions HttpHandlerOptions { get; }
@@ -112,6 +115,6 @@ namespace Ocelot.Configuration
         public bool DangerousAcceptAnyServerCertificateValidator { get; }
         public SecurityOptions SecurityOptions { get; }
         public string DownstreamHttpMethod { get; }
-        public Version DownstreamHttpVersion { get;  }
+        public Version DownstreamHttpVersion { get; }
     }
 }

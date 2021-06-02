@@ -142,6 +142,15 @@
             // as the basis for our cache key.
             app.UseOutputCacheMiddleware();
 
+            if(pipelineConfiguration.PreRequestMiddleware == null)
+            {
+                app.UseDownstreamFilterMiddleware();
+            }
+            else
+            {
+                app.Use(pipelineConfiguration.PreRequestMiddleware);
+            }
+
             //We fire off the request and set the response on the scoped data repo
             app.UseHttpRequesterMiddleware();
 

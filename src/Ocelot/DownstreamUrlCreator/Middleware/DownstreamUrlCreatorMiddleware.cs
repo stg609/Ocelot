@@ -14,6 +14,7 @@ namespace Ocelot.DownstreamUrlCreator.Middleware
     using System;
     using System.Threading.Tasks;
     using Ocelot.DownstreamRouteFinder.Middleware;
+    using System.Linq;
 
     public class DownstreamUrlCreatorMiddleware : OcelotMiddleware
     {

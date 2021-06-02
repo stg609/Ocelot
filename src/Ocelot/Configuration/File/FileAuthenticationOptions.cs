@@ -13,11 +13,12 @@ namespace Ocelot.Configuration.File
 
         public string AuthenticationProviderKey { get; set; }
         public List<string> AllowedScopes { get; set; }
+        public string Policy { get; set; }
 
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append($"{nameof(AuthenticationProviderKey)}:{AuthenticationProviderKey},{nameof(AllowedScopes)}:[");
+            sb.Append($"{nameof(AuthenticationProviderKey)}:{AuthenticationProviderKey},{Policy},{nameof(AllowedScopes)}:[");
             sb.AppendJoin(',', AllowedScopes);
             sb.Append("]");
             return sb.ToString();
