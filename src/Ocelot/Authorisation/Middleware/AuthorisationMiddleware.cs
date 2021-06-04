@@ -14,19 +14,16 @@
         private readonly RequestDelegate _next;
         private readonly IClaimsAuthoriser _claimsAuthoriser;
         private readonly IScopesAuthoriser _scopesAuthoriser;
-        private readonly IAuthorizationService _authorizationService;
 
         public AuthorisationMiddleware(RequestDelegate next,
             IClaimsAuthoriser claimsAuthoriser,
             IScopesAuthoriser scopesAuthoriser,
-            IAuthorizationService authorizationService,
             IOcelotLoggerFactory loggerFactory)
             : base(loggerFactory.CreateLogger<AuthorisationMiddleware>())
         {
             _next = next;
             _claimsAuthoriser = claimsAuthoriser;
             _scopesAuthoriser = scopesAuthoriser;
-            _authorizationService = authorizationService;
         }
 
         public async Task Invoke(HttpContext httpContext)
@@ -45,16 +42,6 @@
 
                     httpContext.Items.UpsertErrors(authorised.Errors);
                     return;
-                }
-
-                if (!string.IsNullOrWhiteSpace(downstreamReRoute.AuthenticationOptions.Policy))
-                {
-                    var authorizedResult = await _authorizationService.AuthorizeAsync(httpContext.User, downstreamReRoute.AuthenticationOptions.Policy);
-                    if (!authorizedResult.Succeeded)
-                    {
-                        Logger.LogWarning($"Failed to authorize by policy {downstreamReRoute.AuthenticationOptions.Policy}");
-                        return;
-                    }
                 }
 
                 if (IsAuthorised(authorised))

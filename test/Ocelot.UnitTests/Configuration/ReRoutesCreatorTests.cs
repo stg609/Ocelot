@@ -32,6 +32,7 @@
         private Mock<IReRouteKeyCreator> _rrkCreator;
         private Mock<ISecurityOptionsCreator> _soCreator;
         private Mock<IVersionCreator> _versionCreator;
+        private Mock<IDownstreamFiltersCreator> _downStreamCreator;
         private FileConfiguration _fileConfig;
         private ReRouteOptions _rro;
         private string _requestId;
@@ -67,6 +68,7 @@
             _rrkCreator = new Mock<IReRouteKeyCreator>();
             _soCreator = new Mock<ISecurityOptionsCreator>();
             _versionCreator = new Mock<IVersionCreator>();
+            _downStreamCreator = new Mock<IDownstreamFiltersCreator>();
 
             _creator = new ReRoutesCreator(
                 _cthCreator.Object,
@@ -80,6 +82,7 @@
                 _hhoCreator.Object,
                 _hfarCreator.Object,
                 _daCreator.Object,
+                _downStreamCreator.Object,
                 _lboCreator.Object,
                 _rrkCreator.Object,
                 _soCreator.Object,
