@@ -35,6 +35,7 @@
             if (downstreamReRoute.DownstreamFilters == null || downstreamReRoute.DownstreamFilters.Count == 0)
             {
                 await _next.Invoke(httpContext);
+                return;
             }
 
             var funcType = Expression.GetDelegateType(typeof(HttpContext), typeof(object[]), typeof(Task<bool>));
